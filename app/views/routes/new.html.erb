@@ -1,0 +1,48 @@
+
+
+<div class="span3 well">
+	<h4><center>1. Trip Information</center></h4>
+<%= form_for @route, :html => { :multipart => true, :class => '' } do |f| %>
+
+      <%= f.text_field :transport, :class => 'span12', placeholder:"Type of Transport"  %>
+
+      <%= f.text_field :price, :class => 'span12', placeholder: "Price"  %>
+
+      <%= f.text_field :min, :class => 'span6', placeholder: "Min pax"  %>
+
+      <%= f.text_field :max, :class => 'span6', placeholder: "Max pax"  %>
+
+      <%= f.text_field :date, :class => 'span12', placeholder: "Date"  %>
+
+ <%= f.submit "Create", :class =>"btn btn-large btn-info btn-block" %>
+</div>
+<div class="span3 well">
+	<h4>2. Choose Route</h4>
+ <!-- Partial fields for adding new source and location -->
+	<%= fields_for :source do |builder| %>
+	<input type="text" class="span12" placeholder="Start Point" id="gmaps-input-address" onchange="calcRoute();"></input> <!-- start point -->
+	<input type="text" class="span11" placeholder="Way Point"></input><button class="close">&times;</button>
+	<% end %>
+<!--<a href="" class="btn-small"><i class="icon-map-marker"></i> Add Point</a>-->
+ <!-- /Partial fields for adding new source and location -->
+<!-- Partial fields for adding new source and location -->
+<!--<a href="" class="offset7 btn-small"><i class="icon-map-marker"></i> Add Point</a>-->
+	<%= fields_for :destination do |builder| %>
+	<input type="text" class="span11" id="searchbox" placeholder="Way Point"></input><button class="close">&times;</button> <!-- end point -->
+	<input type="text" class="span12" placeholder="End Point" id="end" onchange="calcRoute();"></input>
+	<% end %>
+ <!-- /Partial fields for adding new source and location -->
+<hr>
+
+<select class="span5" style="font-size:11px;">
+<option>Arrive by</option>
+<option>Depart at</option>
+</select> 
+<input type="text" class="span7" placeholder="09:43"></input>
+<span class="offset7"><input type="button" class="btn btn-success btn-small" value="Get Direction"></input></span>
+
+<% end %>
+</div>
+
+     <div id="map-canvas" class="span6 well" style="min-height:400px;"></div>
+</div>
